@@ -11,14 +11,13 @@ namespace Calculator.Classes
     public class Validator : IValidator
     {
         private IActionFactory actionFactory = new ActionFactory();
-        public void ValidateBrackets(string exercise)
+        public void ValidateBrackets(List<ArithmeticSign> exercise)
         {
             int validateBrackets = 0;
-            foreach (char character in exercise)
+            foreach (ArithmeticSign arithmeticSign in exercise)
             {
-                if (!Double.TryParse(character.ToString(), out double result))
+                if (!(arithmeticSign is Number))
                 {
-                    ArithmeticSign arithmeticSign = actionFactory.CreateAction(character.ToString());
                     validateBrackets += arithmeticSign is Parentheses && ((Parentheses)arithmeticSign).isOpen ? 1 : 0;
                     validateBrackets -= arithmeticSign is Parentheses && !((Parentheses)arithmeticSign).isOpen ? 1 : 0;
                     if (validateBrackets == -1) throw new Exception("Please use the brackets correctly.");
@@ -26,21 +25,15 @@ namespace Calculator.Classes
             }
             if (validateBrackets != 0) throw new Exception("Please use the brackets correctly.");
         }
-        public void ValidateSignsType(string exercise)
-        {
-            if (!Regex.IsMatch(exercise, @"^[0-9*()+-\/]+$"))
-                throw new Exception("Please use only numbers and arithmetic signs");
-        }
-        public void ValidateSignsAfterBrackets(string exercise)
-        {
-            if (Regex.IsMatch(exercise, @"^[0-9]+[(]+|[)]+[0-9]+$"))
-                throw new Exception("Please write arithmetic sign before and after brackets");
-        }
-        public void ValidateExercise(string exercise)
+        //public void ValidateSignsAfterBrackets(string exercise)
+        //{
+        //    if (Regex.IsMatch(exercise, @"^[0-9]+[(]+|[)]+[0-9]+$"))
+        //        throw new Exception("Please write arithmetic sign before and after brackets");
+        //}
+        public void ValidateExercise(List<ArithmeticSign> exercise)
         {
             ValidateBrackets(exercise);
-            ValidateSignsType(exercise);
-            ValidateSignsAfterBrackets(exercise);
+            //ValidateSignsAfterBrackets(exercise);
         }
     }
 }

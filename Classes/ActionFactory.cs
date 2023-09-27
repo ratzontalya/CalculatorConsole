@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calculator.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,8 @@ namespace Calculator
             ArithmeticSign arithmeticSign;
             if (actionDictionary.ContainsKey(sign))
                 arithmeticSign = actionDictionary[sign];
+            else if (Double.TryParse(sign, out double result))
+                arithmeticSign = new Number(result);
             else
                 throw new Exception($"The sign {sign} is not valid");
             return arithmeticSign;

@@ -21,11 +21,10 @@ namespace Calculator
                     string exercise = Console.ReadLine();
 
                     Calculator calculator = new Calculator();
-                    IValidator validator = new Validator();
-                    validator.ValidateExercise(exercise);
                     Converter converter = new Converter();
-                    List<string> convertedExercise = converter.ConvertExerciseToList(exercise);
-
+                    List<ArithmeticSign> convertedExercise = converter.ConvertExerciseToList(exercise);
+                    IValidator validator = new Validator();
+                    validator.ValidateExercise(convertedExercise);
                     double result = calculator.Calculate(convertedExercise);
                     Console.WriteLine(result);
 

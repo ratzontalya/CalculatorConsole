@@ -10,9 +10,8 @@ namespace Calculator
 {
     public interface IValidator
     {
-        void ValidateBrackets(string exercise);
-        void ValidateSignsType(string exercise);
-        void ValidateSignsAfterBrackets(string exercise);
-        void ValidateExercise(string exercise);
+        void ValidateBrackets(List<ArithmeticSign> exercise);
+        //void ValidateSignsAfterBrackets(List<ArithmeticSign> exercise);
+        void ValidateExercise(List<ArithmeticSign> exercise);
     }
 }

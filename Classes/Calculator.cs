@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calculator.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +10,14 @@ namespace Calculator
 {
     public class Calculator
     {
-        public IActionFactory actionFactory;
-        public Calculator() {
-            actionFactory = new ActionFactory();
-        }
-
-        public double Calculate(List<string> exercise, int index = 0)
+        public double Calculate(List<ArithmeticSign> exercise, int index = 0)
         {
             double result;
             if (exercise.Count == 0) return 0;
-            if (exercise.Count == 1 && Double.TryParse(exercise[0], out result)) return result;
-            if (actionFactory.GetArithmeticSigns().Contains(exercise[index]))
+            if ((exercise.Count == 1) && (exercise[0] is Number)) return ((Number) exercise[0]).value;
+            if (!(exercise[index] is Number))
             {
-                ArithmeticSign arithmeticSign = actionFactory.CreateAction(exercise[index]);
-                result = arithmeticSign.CalculateOperator(exercise, index);
+                result = exercise[index].CalculateOperator(exercise, index);
             }
             else
             {

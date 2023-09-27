@@ -9,7 +9,7 @@ namespace Calculator.Classes
 {
     public class Converter
     {
-        public List<string> ConvertExerciseToList(string exercise)
+        public List<ArithmeticSign> ConvertExerciseToList(string exercise)
         {
             exercise = exercise.Replace("+-", "-");
             exercise = exercise.Replace("-+", "-");
@@ -19,7 +19,7 @@ namespace Calculator.Classes
 
             IActionFactory actionFactory = new ActionFactory();
             int index = 0;
-            List<string> convertedExercise = splittedExercise.Select(character =>
+            List<ArithmeticSign> convertedExercise = splittedExercise.Select(character =>
             {
                 if ((character == "-") &&
                    ((index == 0) || (actionFactory.GetArithmeticSigns().Contains(splittedExercise[index - 1]))
@@ -27,7 +27,7 @@ namespace Calculator.Classes
                     character = "~";
                 index += 1;
                 return character;
-            }).ToList();
+            }).ToList().Select(sign => actionFactory.CreateAction(sign)).ToList();
 
             return convertedExercise;
         }

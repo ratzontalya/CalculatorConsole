@@ -13,7 +13,7 @@ namespace Calculator
         {
             isOpen = character == "(" ? true : false;
         }
-        public override double CalculateOperator(List<string> exercise, int index)
+        public override double CalculateOperator(List<ArithmeticSign> exercise, int index)
         {
             return calculator.Calculate(exercise.GetRange(1, exercise.Count - 2), index + 1);
         }
