@@ -21,7 +21,7 @@ namespace Calculator
                     string exercise = Console.ReadLine();
 
                     Calculator calculator = new Calculator();
-                    Validator validator = new Validator();
+                    IValidator validator = new Validator();
                     validator.ValidateExercise(exercise);
                     Converter converter = new Converter();
                     List<string> convertedExercise = converter.ConvertExerciseToList(exercise);

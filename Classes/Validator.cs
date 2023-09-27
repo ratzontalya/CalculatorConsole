@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Calculator.Classes
 {
-    public class Validator
+    public class Validator : IValidator
     {
-        public static IActionFactory actionFactory = new ActionFactory();
+        private IActionFactory actionFactory = new ActionFactory();
         public void ValidateBrackets(string exercise)
         {
             int validateBrackets = 0;

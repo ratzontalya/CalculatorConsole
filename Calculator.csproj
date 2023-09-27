@@ -59,6 +59,7 @@
     <Compile Include="Classes\Minus.cs" />
     <Compile Include="Classes\Mult.cs" />
     <Compile Include="Classes\Plus.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
