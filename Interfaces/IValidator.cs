@@ -11,7 +11,7 @@ namespace Calculator
     public interface IValidator
     {
         void ValidateBrackets(List<ArithmeticSign> exercise);
-        //void ValidateSignsAfterBrackets(List<ArithmeticSign> exercise);
+        void ValidateSignsAfterBrackets(List<ArithmeticSign> exercise);
         void ValidateExercise(List<ArithmeticSign> exercise);
     }
 }

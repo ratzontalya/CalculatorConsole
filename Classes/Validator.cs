@@ -25,15 +25,22 @@ namespace Calculator.Classes
             }
             if (validateBrackets != 0) throw new Exception("Please use the brackets correctly.");
         }
-        //public void ValidateSignsAfterBrackets(string exercise)
-        //{
-        //    if (Regex.IsMatch(exercise, @"^[0-9]+[(]+|[)]+[0-9]+$"))
-        //        throw new Exception("Please write arithmetic sign before and after brackets");
-        //}
+        public void ValidateSignsAfterBrackets(List<ArithmeticSign> exercise)
+        {
+            int index = 0;
+            foreach (ArithmeticSign sign in exercise)
+            {
+                if((index > 0) && (sign is Parentheses) && (((Parentheses)sign).isOpen) && exercise[index -1] is Number)
+                    throw new Exception("Please write arithmetic sign before and after brackets");
+                if ((index < exercise.Count - 1) && (sign is Parentheses) && (!((Parentheses)sign).isOpen) && exercise[index + 1] is Number)
+                    throw new Exception("Please write arithmetic sign before and after brackets");
+                index += 1;
+            }
+        }
         public void ValidateExercise(List<ArithmeticSign> exercise)
         {
             ValidateBrackets(exercise);
-            //ValidateSignsAfterBrackets(exercise);
+            ValidateSignsAfterBrackets(exercise);
         }
     }
 }
