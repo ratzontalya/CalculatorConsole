@@ -8,11 +8,11 @@ namespace Calculator.Classes
 {
     public class Number : ArithmeticSign
     {
-        public double value;
+        private double value;
         public Number(double number) {
             value = number;
         }
-        public override double CalculateOperator(List<ArithmeticSign> exercise, int index)
+        public override double Calculate(List<ArithmeticSign> exercise, int index)
         {
             return value;
         }

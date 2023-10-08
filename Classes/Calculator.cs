@@ -14,10 +14,10 @@ namespace Calculator
         {
             double result;
             if (exercise.Count == 0) return 0;
-            if ((exercise.Count == 1) && (exercise[0] is Number)) return ((Number) exercise[0]).value;
+            if ((exercise.Count == 1) && (exercise[0] is Number)) return exercise[0].Calculate(exercise, index);
             if (!(exercise[index] is Number))
             {
-                result = exercise[index].CalculateOperator(exercise, index);
+                result = exercise[index].Calculate(exercise, index);
             }
             else
             {

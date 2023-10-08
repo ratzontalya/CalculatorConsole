@@ -9,6 +9,6 @@ namespace Calculator
     public abstract class ArithmeticSign
     {
         protected Calculator calculator = new Calculator();
-        public abstract double CalculateOperator(List<ArithmeticSign> exercise, int index);
+        public abstract double Calculate(List<ArithmeticSign> exercise, int index);
     }
 }

@@ -9,7 +9,7 @@ namespace Calculator
 {
     public abstract class HonoraryOperator : ArithmeticMethod
     {
-        public override double CalculateOperator(List<ArithmeticSign> exercise, int operationIndex)
+        public override double Calculate(List<ArithmeticSign> exercise, int operationIndex)
         {
             List<ArithmeticSign> subExercise = HigherOperatorsSubExercise(exercise.GetRange(operationIndex + 1, exercise.Count - operationIndex - 1), exercise[operationIndex]);
             int subExerciseLength = subExercise.Count;
@@ -20,7 +20,7 @@ namespace Calculator
 
             if ((exercise.Count < 2) || (!(exercise[operationIndex + 1] is Number)))
                 throw new Exception("Incorrect input ");
-            double operatorResult = Operation(((Number)exercise[operationIndex + 1]).value);
+            double operatorResult = Operation(exercise[operationIndex + 1].Calculate(exercise, operationIndex + 1));
             exercise.RemoveRange(operationIndex, 2);
             exercise.Insert(operationIndex, new Number(operatorResult));
 
